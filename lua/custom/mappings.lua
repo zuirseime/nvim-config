@@ -1,4 +1,4 @@
-local map = function(keys, func, desc, mode)
+﻿local map = function(keys, func, desc, mode)
   mode = mode or 'n'
   vim.keymap.set(mode, keys, func, { noremap = true, desc = desc })
 end
@@ -16,7 +16,7 @@ map('gO', require('telescope.builtin').lsp_document_symbols, 'LSP: Open Document
 map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'LSP: Open Workspace Symbols')
 map('grt', require('telescope.builtin').lsp_type_definitions, 'LSP: [G]oto [T]ype Definition')
 
-map('\\', '<CMD>Neotree toggle<CR>', 'Toggle Neo Tree')
+map('<leader>e', '<CMD>Neotree toggle<CR>', 'Toggle Neo Tree')
 
 map('<leader>f', function()
   require('conform').format { async = true, lsp_format = 'fallback' }
@@ -48,13 +48,17 @@ map('<leader>th', function()
 end, '[T]oggle Inlay [H]ints')
 
 map('<C-s>', '<CMD>w<CR>', '[S]ave Buffer')
+map('<C-c>', '<cmd>%y+<CR>', '[C]opy Whole Buffer')
 map('<C-x>', '<CMD>bd<CR>', 'Close Buffer')
+
+map('<leader>n', '<cmd>set nu!<CR>', 'Toggle Line [N]umber')
+map('<leader>rn', '<cmd>set rnu!<CR>', 'Toggle [R]elative [N]umber')
 
 map('<Esc>', '<cmd>nohlsearch<CR>', 'Turn Off Highlights')
 
 map('<leader>q', vim.diagnostic.setloclist, '[Q]uickfix List')
 
-map('<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode', 't')
+map('<Esc>', '<C-\\><C-n>', 'Exit terminal mode', 't')
 
 map('<C-h>', '<C-w><C-h>', 'Move focus to the left window')
 map('<C-l>', '<C-w><C-l>', 'Move focus to the right window')
@@ -105,3 +109,13 @@ end, 'Debug: Toggle Breakpoint')
 map('<leader>B', function()
   dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 end, 'Debug: Set Breakpoint')
+
+map('<leader>dtr', '<CMD>Dotnet testrunner<CR>', '.NET: [T]est [R]unner')
+map('<leader>dtt', '<CMD>Dotnet test<CR>', '.NET: [T]est')
+map('<leader>db', '<CMD>Dotnet build<CR>', '.NET: [B]uild')
+map('<leader>dr', '<CMD>Dotnet run<CR>', '.NET: [R]un')
+
+map('<A-b>', '<CMD>split<CR>', 'Split [B]uffer Horizontally')
+map('<A-B>', '<CMD>vsplit<CR>', 'Split [B]uffer Vertically')
+map('<A-t>', '<CMD>split +term<CR>i', 'Split [W]indow [T]erminal Horizontally')
+map('<A-T>', '<CMD>vsplit +term<CR>i', 'Split [W]indow [T]erminal Vertically')

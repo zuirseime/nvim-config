@@ -4,14 +4,12 @@ return {
   config = function()
     require('mini.ai').setup { n_lines = 500 }
 
-    -- require('mini.surround').setup()
     require('mini.tabline').setup()
     require('mini.icons').setup()
     require('mini.cursorword').setup()
-    -- require('mini.indentscope').setup()
     require('mini.git').setup()
     require('mini.sessions').setup {
-      autoread = false,
+      autoread = true,
       autowrite = true,
       directory = '', --<"session" subdir of user data directory from |stdpath()|>,
       file = 'Session.vim',

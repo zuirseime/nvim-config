@@ -26,7 +26,6 @@ return {
   --- @type blink.cmp.Config
   opts = {
     keymap = {
-      -- <c-y> to accept ([y]es) the completion.
       -- <c-space>: Open menu or open docs if already open
       -- <c-e>: Hide menu
       -- <c-k>: Toggle signature help
@@ -36,10 +35,12 @@ return {
       preset = 'default',
 
       ['<TAB>'] = { 'select_next', 'fallback' },
-      ['<S-TAB>'] = { 'select_next', 'fallback' },
+      ['<S-TAB>'] = { 'select_prev', 'fallback' },
 
       ['<C-h>'] = { 'snippet_backward', 'fallback' },
-      ['<C-l'] = { 'snippet_forward', 'fallback' },
+      ['<C-l>'] = { 'snippet_forward', 'fallback' },
+
+      -- ['<C-y>'] = { 'select_accept_and_enter', 'fallback' },
     },
 
     appearance = {
