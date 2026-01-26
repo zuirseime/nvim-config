@@ -19,7 +19,6 @@ opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 g.ai_cmp = true
 g.base46_cache = vim.fn.stdpath 'data' .. '/base46/'
-g.mapleader = ' '
 g.have_nerd_font = false
 
 o.cursorline = true

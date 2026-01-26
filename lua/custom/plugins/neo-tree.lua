@@ -3,6 +3,7 @@
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
+  enabled = true,
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -12,7 +13,9 @@ return {
   config = function()
     require('neo-tree').setup {
       filesystem = {
-        follow_current_file = true,
+        follow_current_file = {
+          enabled = true,
+        },
         filtered_items = {
           visible = true,
           show_hidden_count = true,

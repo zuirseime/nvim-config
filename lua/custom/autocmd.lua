@@ -54,3 +54,52 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+local indent_by_lsp = {
+  roslyn = 4,
+  lua_ls = 2,
+}
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then
+      return
+    end
+
+    local width = indent_by_lsp[client.name]
+    if not width then
+      return
+    end
+
+    vim.opt.shiftwidth = width
+    vim.opt.tabstop = width
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  callback = function()
+    if vim.bo.buftype == '' then
+      return
+    end
+
+    local sessions = require 'mini.sessions'
+
+    local cwd = vim.loop.cwd()
+    local home = vim.loop.os_homedir()
+
+    if cwd == home or cwd:sub(1, #home + 1) == home .. '/' then
+      return
+    end
+
+    local name = vim.fn.fnamemodify(cwd, ':t') .. '.vim'
+    local path = sessions.config.directory .. '/' .. name
+
+    if vim.loop.fs_stat(path) then
+      sessions.read(name)
+    else
+      sessions.write(name)
+    end
+  end,
+  once = true,
+})

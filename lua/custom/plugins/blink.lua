@@ -26,21 +26,9 @@ return {
   --- @type blink.cmp.Config
   opts = {
     keymap = {
-      -- <c-space>: Open menu or open docs if already open
-      -- <c-e>: Hide menu
-      -- <c-k>: Toggle signature help
-      --
       -- See :h blink-cmp-config-keymap for defining your own keymap
       ---@type 'default' | 'super-tab' | 'enter' | 'none'
       preset = 'default',
-
-      ['<TAB>'] = { 'select_next', 'fallback' },
-      ['<S-TAB>'] = { 'select_prev', 'fallback' },
-
-      ['<C-h>'] = { 'snippet_backward', 'fallback' },
-      ['<C-l>'] = { 'snippet_forward', 'fallback' },
-
-      -- ['<C-y>'] = { 'select_accept_and_enter', 'fallback' },
     },
 
     appearance = {
