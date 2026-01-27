@@ -1,7 +1,6 @@
 ﻿local lazy_config = require 'lazy.core.config'
 local tb = require 'telescope.builtin'
 local dap = require 'dap'
-local blink = require 'blink.cmp'
 
 local map = function(keys, func, desc, mode)
   vim.keymap.set(mode or 'n', keys, func, { noremap = true, desc = desc })
@@ -14,6 +13,11 @@ map('<Esc>', '<cmd>nohlsearch<CR>', 'Turn Off Highlights')
 map('<C-s>', '<CMD>w<CR>', 'Save Buffer')
 map('<C-c>', '<cmd>%y+<CR>', 'Copy Whole Buffer')
 map('<C-q>', '<CMD>bd<CR>', 'Quit Buffer')
+map('<leader>wq', '<CMD>wall<CR><CMD>qall<CR>', 'Save and Quit')
+map('<A-h>', function()
+  local prompt = vim.fn.input('Help', '', 'help')
+  vim.cmd('vertical help ' .. prompt)
+end, 'Open Helper Docs')
 
 -- User Movement
 map('<UP>', '<CMD>echo "Use \'k\' to move up"<CR>', "Use 'k' to move up", { 'n', 'i', 'x' })
@@ -154,22 +158,8 @@ map('<leader>yd', '<CMD>Yazi cwd<CR>', 'Yazi: Open in the Working Directory', { 
 map('<leader>yt', '<CMD>Yazi toggle<CR>', 'Yazi: Toggle', { 'n', 'v' })
 
 -- Blink
-map('<TAB>', blink.select_next, 'Blink: Select Next', 'i')
-map('<S-TAB>', blink.select_prev, 'Blink: Select Previous', 'i')
-map('<C-h>', blink.snippet_backward, 'Blink: Move to Previous Placeholder', 'i')
-map('<C-l>', blink.snippet_forward, 'Blink: Move to Next Placeholder', 'i')
-map('<C-y>', blink.select_accept_and_enter, 'Blink: Accept Completion', 'i')
-map('<C-u>', blink.scroll_documentation_up, 'Blink: Scroll Documantation Up', 'i')
-map('<C-d>', blink.scroll_documentation_down, 'Blink: Scroll Documantation Down', 'i')
-map('<C-SPACE>', blink.show_and_insert, 'Blink: Show Completion Window', 'i')
-map('<C-e>', blink.hide, 'Blink: Hide Completion Window', 'i')
-map('<C-k>', function()
-  if blink.is_signature_visible() then
-    blink.hide_signature()
-  else
-    blink.show_signature()
-  end
-end, 'Blink: Toggle Signature', 'i')
+--- See lua/custom/plugins/blink.lua
+--- opt.keymap
 
 -- Misc
 local plugin = lazy_config.plugins['neo-tree.nvim']

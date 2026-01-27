@@ -28,7 +28,15 @@ return {
     keymap = {
       -- See :h blink-cmp-config-keymap for defining your own keymap
       ---@type 'default' | 'super-tab' | 'enter' | 'none'
-      preset = 'default',
+      preset = 'enter',
+
+      ['<TAB>'] = { 'select_next', 'snippet_forward', 'accept', 'fallback' },
+      ['<S-TAB>'] = { 'select_prev', 'snippet_backward', 'accept', 'fallback' },
+
+      ['<C-SPACE>'] = { 'show_and_insert', 'show_documentation', 'hide_documentation' },
+
+      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
     },
 
     appearance = {

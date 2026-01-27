@@ -65,7 +65,7 @@ return {
         starter.gen_hook.indexing('all', { 'Actions' }),
         starter.gen_hook.aligning('center', 'center'),
       },
-      footer = footer,
+      -- footer = footer,
     }
     require('mini.sessions').setup {
       autoread = true,
