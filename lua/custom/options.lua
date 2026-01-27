@@ -56,7 +56,7 @@ opt.formatoptions = 'rjqn'
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
 opt.pumheight = 10
 
-opt.shortmess = 'aoOsTAC'
+opt.shortmess = 'aoOsTACF'
 opt.cmdheight = 0
 
 -- Spellchecking

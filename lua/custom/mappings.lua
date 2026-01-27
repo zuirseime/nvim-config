@@ -157,6 +157,11 @@ map('<leader>yf', '<CMD>Yazi<CR>', 'Yazi: Open at the Current File', { 'n', 'v' 
 map('<leader>yd', '<CMD>Yazi cwd<CR>', 'Yazi: Open in the Working Directory', { 'n', 'v' })
 map('<leader>yt', '<CMD>Yazi toggle<CR>', 'Yazi: Toggle', { 'n', 'v' })
 
+-- Aerial
+map('{', '<CMD>AerialPrev<CR>', 'Aerial: Jump to the Previous Member')
+map('}', '<CMD>AerialNext<CR>', 'Aerial: Jump to the Next Member')
+map('<leader>a', '<CMD>AerialToggle!<CR>', 'Aerial: Toggle')
+
 -- Blink
 --- See lua/custom/plugins/blink.lua
 --- opt.keymap

@@ -26,6 +26,7 @@ require('lazy').setup({
       },
     },
   },
+  { 'ThePrimeagen/vim-be-good' },
   { import = 'custom.plugins' },
   { import = 'custom.themes' },
 }, lazy_config)
