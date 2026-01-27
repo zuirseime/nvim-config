@@ -1,16 +1,32 @@
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
-})
-
 vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
     if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
       vim.cmd('cd ' .. vim.fn.argv(0))
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.schedule(function()
+      local sessions = require 'mini.sessions'
+
+      local cwd = vim.loop.cwd()
+      local home = vim.loop.os_homedir()
+
+      if cwd == home then
+        return
+      end
+
+      local name = vim.fn.fnamemodify(cwd, ':t') .. '.vim'
+      local path = sessions.config.directory .. '/' .. name
+
+      if vim.loop.fs_stat(path) then
+        sessions.read(name)
+      else
+        sessions.write(name)
+      end
+    end)
   end,
 })
 
@@ -77,29 +93,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-vim.api.nvim_create_autocmd('BufWinEnter', {
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
-    if vim.bo.buftype == '' then
-      return
-    end
-
-    local sessions = require 'mini.sessions'
-
-    local cwd = vim.loop.cwd()
-    local home = vim.loop.os_homedir()
-
-    if cwd == home or cwd:sub(1, #home + 1) == home .. '/' then
-      return
-    end
-
-    local name = vim.fn.fnamemodify(cwd, ':t') .. '.vim'
-    local path = sessions.config.directory .. '/' .. name
-
-    if vim.loop.fs_stat(path) then
-      sessions.read(name)
-    else
-      sessions.write(name)
-    end
+    vim.hl.on_yank()
   end,
-  once = true,
 })
