@@ -15,6 +15,7 @@ return {
       { '<leader>d', group = 'DotNet' },
       { '<leader>l', group = 'LSP' },
       { '<leader>y', group = 'Yazi' },
+      { '<leader>w', group = 'Write/Quit' },
     },
   },
 }

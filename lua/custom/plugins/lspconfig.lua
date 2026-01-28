@@ -9,16 +9,16 @@ return {
   },
 
   config = function()
-    vim.lsp.config('rolsyn', {
-      cmd = { 'roslyn' },
-      filetypes = { 'cs' },
-      root_dir = vim.fs.root(0, function(name, path)
-        return name:match '%.sln$' ~= nil
-      end),
-      init_options = {
-        AutomaticWorkspaceInit = true,
-      },
-    })
+    -- vim.lsp.config('rolsyn', {
+    --   cmd = { 'roslyn' },
+    --   filetypes = { 'cs' },
+    --   root_dir = vim.fs.root(0, function(name, path)
+    --     return name:match '%.sln$' ~= nil
+    --   end),
+    --   init_options = {
+    --     AutomaticWorkspaceInit = true,
+    --   },
+    -- })
 
     vim.diagnostic.config {
       severity_sort = true,
@@ -52,8 +52,8 @@ return {
     local servers = {
       html = {},
       cssls = {},
-      -- bashls = {},
-      roslyn = {},
+      bashls = {},
+      -- roslyn = {},
       pylsp = {},
       lua_ls = {
         settings = {

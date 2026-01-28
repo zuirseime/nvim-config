@@ -35,8 +35,8 @@ return {
 
       ['<C-SPACE>'] = { 'show_and_insert', 'show_documentation', 'hide_documentation' },
 
-      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<UP>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<DOWN>'] = { 'scroll_documentation_down', 'fallback' },
     },
 
     appearance = {
