@@ -11,7 +11,6 @@ return {
     spec = {
       { '<leader>s', group = 'Search' },
       { '<leader>t', group = 'Trouble' },
-      { '<leader>h', group = 'Git Hunk', mode = { 'n', 'v' } },
       { '<leader>d', group = 'DotNet' },
       { '<leader>l', group = 'LSP' },
       { '<leader>y', group = 'Yazi' },

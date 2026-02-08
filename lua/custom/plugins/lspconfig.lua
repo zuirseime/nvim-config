@@ -9,17 +9,6 @@ return {
   },
 
   config = function()
-    -- vim.lsp.config('rolsyn', {
-    --   cmd = { 'roslyn' },
-    --   filetypes = { 'cs' },
-    --   root_dir = vim.fs.root(0, function(name, path)
-    --     return name:match '%.sln$' ~= nil
-    --   end),
-    --   init_options = {
-    --     AutomaticWorkspaceInit = true,
-    --   },
-    -- })
-
     vim.diagnostic.config {
       severity_sort = true,
       float = { border = 'rounded', source = 'if_many' },
@@ -53,8 +42,41 @@ return {
       html = {},
       cssls = {},
       bashls = {},
-      -- roslyn = {},
+      lemminx = {},
+      harper_ls = {
+        settings = {
+          ['harper-ls'] = {
+            userDictPath = '~/.config/harper-ls/dict.txt',
+            linters = {
+              SpellCheck = true,
+              SpelledNumbers = true,
+              AnA = true,
+              SentenceCapitalization = true,
+              UnclosedQuotes = true,
+              WrongQuotes = true,
+              LongSentences = true,
+              RepeatedWords = true,
+              Spaces = true,
+              Matcher = true,
+              CorrectNumberSuffix = true,
+              ExpandTimeShorthands = false,
+              NounVerbConfusion = true,
+            },
+            codeActions = {
+              ForceStable = false,
+            },
+            markdown = {
+              IgnoreLinkTitle = false,
+            },
+            diagnosticSeverity = 'hint',
+            isolateEnglish = false,
+            dialect = 'British',
+            maxFileLength = 120000,
+          },
+        },
+      },
       pylsp = {},
+      ['json-lsp'] = {},
       lua_ls = {
         settings = {
           Lua = {

@@ -1,6 +1,7 @@
 ﻿local lazy_config = require 'lazy.core.config'
 local tb = require 'telescope.builtin'
 local dap = require 'dap'
+local no_neck_pain = require 'no-neck-pain'
 
 local map = function(keys, func, desc, mode)
   vim.keymap.set(mode or 'n', keys, func, { noremap = true, desc = desc })
@@ -12,7 +13,7 @@ map('jk', '<ESC>', 'Return to Normal Mode', 'i')
 map('<Esc>', '<cmd>nohlsearch<CR>', 'Turn Off Highlights')
 map('<C-s>', '<CMD>w<CR>', 'Save Buffer')
 map('<C-c>', '<cmd>%y+<CR>', 'Copy Whole Buffer')
-map('<C-v>', 'ggVG', 'Select Whole Buffer')
+map('<C-h>', 'ggVG', 'Select Whole Buffer')
 map('<C-q>', '<CMD>bd<CR>', 'Quit Buffer')
 map('<leader>wq', '<CMD>wall<CR><CMD>qall<CR>', 'Save and Quit')
 map('<A-h>', function()
@@ -26,6 +27,9 @@ map('<DOWN>', '<CMD>echo "Use \'j\' to move down"<CR>', "Use 'j' to move down", 
 map('<LEFT>', '<CMD>echo "Use \'h\' to move left"<CR>', "Use 'h' to move left", { 'n', 'i', 'x' })
 map('<RIGHT>', '<CMD>echo "Use \'l\' to move right"<CR>', "Use 'l' to move right", { 'n', 'i', 'x' })
 
+map('<ScrollWheelUp>', '<CMD>echo "Scrolling isn\'t allowed"<CR>', "Use 'k' to move up", { 'n', 'v', 'i' })
+map('<ScrollWheelDown>', '<CMD>echo "Scrolling isn\'t allowed"<CR>', "Use 'j' to move down", { 'n', 'v', 'i' })
+
 -- Indentation
 map('<Tab>', '>gv', 'Indent Right', 'x')
 map('<S-Tab>', '<gv', 'Indent Left', 'x')
@@ -33,6 +37,7 @@ map('<S-Tab>', '<gv', 'Indent Left', 'x')
 -- Buffers
 map('<Tab>', '<CMD>bnext<CR>', 'Next Buffer')
 map('<S-Tab>', '<CMD>bprev<CR>', 'Previous Buffer')
+map('<leader>T', '<CMD>FloatermToggle<CR>', 'Open Floating Terminal')
 
 -- Line / Block Movement
 --- Normal Mode
@@ -108,6 +113,12 @@ map('<leader>td', '<CMD>Trouble lsp toggle focus=false win.position=right<CR>', 
 map('<leader>tl', '<CMD>Trouble loclist toggle<CR>', 'Trouble: Location List')
 map('<leader>tq', '<CMD>Trouble qflist toggle<CR>', 'Trouble: Quickfix List')
 
+map('<leader>tf', function()
+  local prompt = vim.fn.input 'Find'
+  vim.cmd('vimgrep /' .. prompt .. '/gj **/*')
+  vim.cmd 'Trouble quickfix'
+end)
+
 -- Widows & Layout
 --- Movement
 map('<C-h>', '<C-w><C-h>', 'Move focus to the left window')
@@ -166,6 +177,9 @@ map('<leader>a', '<CMD>AerialToggle!<CR>', 'Aerial: Toggle')
 -- Blink
 --- See lua/custom/plugins/blink.lua
 --- opt.keymap
+
+-- NoNeckPain
+map('<leader>c', no_neck_pain.toggle, 'No Neck Pain: Toggles Buffer Centering')
 
 -- Misc
 local plugin = lazy_config.plugins['neo-tree.nvim']

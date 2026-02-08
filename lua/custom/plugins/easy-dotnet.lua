@@ -86,8 +86,7 @@ return {
         if require('easy-dotnet.extensions').isWindows() == true then
           command = command .. '\r'
         end
-        vim.cmd 'vsplit'
-        vim.cmd('term ' .. command)
+        vim.cmd('FloatermNew --autoclose=0 --title=dotnet --name=dotnet ' .. command)
       end,
       csproj_mappings = true,
       fsproj_mappings = true,

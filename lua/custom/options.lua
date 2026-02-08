@@ -48,7 +48,7 @@ opt.backup = false
 opt.writebackup = false
 
 -- Input
-opt.mouse = ''
+opt.mouse = 'a'
 opt.backspace = { 'indent', 'eol', 'start' }
 opt.formatoptions = 'rjqn'
 

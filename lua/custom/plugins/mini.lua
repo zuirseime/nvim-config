@@ -50,14 +50,14 @@ return {
     require('mini.tabline').setup()
     require('mini.icons').setup()
     require('mini.cursorword').setup()
-    require('mini.git').setup()
+    -- require('mini.git').setup()
     local starter = require 'mini.starter'
     starter.setup {
       autoopen = true,
       header = headers[math.random(#headers)],
       items = {
         actions,
-        starter.sections.sessions(5, true),
+        starter.sections.sessions(10, true),
         starter.sections.recent_files(5, false, false),
       },
       content_hooks = {

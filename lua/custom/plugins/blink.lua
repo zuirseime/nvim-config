@@ -5,20 +5,6 @@ return {
   dependencies = {
     {
       'L3MON4D3/LuaSnip',
-      version = '2.*',
-      build = (function()
-        -- Build Step is needed for regex support in snippets.
-        return 'make install_jsregexp'
-      end)(),
-      dependencies = {
-        {
-          'rafamadriz/friendly-snippets',
-          config = function()
-            require('luasnip.loaders.from_vscode').lazy_load()
-          end,
-        },
-      },
-      opts = {},
     },
     'folke/lazydev.nvim',
   },
@@ -35,8 +21,8 @@ return {
 
       ['<C-SPACE>'] = { 'show_and_insert', 'show_documentation', 'hide_documentation' },
 
-      ['<UP>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<DOWN>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<C-S-b>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-S-f>'] = { 'scroll_documentation_down', 'fallback' },
     },
 
     appearance = {

@@ -10,6 +10,10 @@ return {
       sh = { 'beautysh' },
       css = { 'prettier' },
       html = { 'prettier' },
+      json = { 'prettier' },
+      md = { 'prettier' },
+      markdown = { 'prettier' },
+      xml = { 'xmlformatter' },
     },
     format_on_save = function(bufnr)
       local disable_filetypes = { c = true, cpp = true }
